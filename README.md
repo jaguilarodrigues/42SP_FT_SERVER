@@ -21,6 +21,7 @@ service --status-all
 ```
 
 [ + ]  nginx  (active)
+
 [ - ]  nginx  (disabled)
 
 Disabled  nginx
