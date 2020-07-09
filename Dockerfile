@@ -3,7 +3,7 @@ FROM debian:buster
 
 ENV AUTOINDEX=on
 
-#Copia o diretorio src para o root 
+#Copia o diretorio src para o root
 COPY srcs /root/
 
 #Retira a interação durante a instalacao
@@ -14,8 +14,7 @@ RUN apt-get update && \
  apt-get install -y \
  nginx \
  wget \
- vim && \
- bash /root/config.sh 
+ bash /root/server_setup.sh
 
 #Expoem as portas 80 e 443
 EXPOSE 80/tcp 443/tcp
