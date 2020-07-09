@@ -1,6 +1,8 @@
 #Usa a imagem debian buster do Dockerhub como base
 FROM debian:buster
 
+ENV AUTOINDEX=on
+
 #Copia o diretorio src para o root 
 COPY srcs /root/
 
@@ -15,8 +17,7 @@ RUN apt-get update && \
  vim && \
  bash /root/config.sh 
 
-#
-ENTRYPOINT bash /root/starts.sh 
-
 #Expoem as portas 80 e 443
 EXPOSE 80/tcp 443/tcp
+
+ENTRYPOINT ["bash", "/root/starts.sh"]

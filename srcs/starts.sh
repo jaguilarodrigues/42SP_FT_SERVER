@@ -11,4 +11,8 @@
 # inicializa denovo o nginx
 /etc/init.d/nginx start
 
+bash /root/autoindex.sh
+
+cd /root/
+
 bash

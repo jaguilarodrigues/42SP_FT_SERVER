@@ -1,16 +1,15 @@
-nginx_file='/etc/nginx/sites-available/default'
+#!/bin/bash
 
-grep "autoindex on;" "$nginx_file" > /dev/null
+INDEX=${1:-$AUTOINDEX}
+nginx_file="/etc/nginx/sites-available/default"
 
-if [ $? = 0 ];
+if [[ "$INDEX" == "off" || "$INDEX" == "on" ]];
 then
-	sed -i 's/autoindex on/autoindex off/' "$nginx_file";
+	sed -i -E "/autoindex/ s/on|off/$INDEX/" $nginx_file;
+	export AUTOINDEX=$INDEX
 	/etc/init.d/nginx restart
-	echo "Autoindex is [OFF]"
+	echo "Autoindex is [$INDEX]"
 else
-	 sed -i 's/autoindex off/autoindex on/' "$nginx_file";
-        /etc/init.d/nginx restart
-	echo "Autoindex is [ON]"
-
+	echo $'Invalid Parameter!\n\tUsage autoindex [ on|off ]'
 fi
 
