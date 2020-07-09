@@ -16,6 +16,12 @@ mkdir /var/www/localhost
 chown -R www-data:www-data /var/www/*
 chmod -R 755 /var/www/*
 
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+	-subj "/C=BR/ST=SP/L=Sao Paulo/O=42 Sao Paulo/CN=localhost" \
+	-keyout /etc/ssl/certs/localhost.key \
+	-out /etc/ssl/certs/localhost.crt 
+
+
 # inicializa o mysql
 /etc/init.d/mysql start
 
